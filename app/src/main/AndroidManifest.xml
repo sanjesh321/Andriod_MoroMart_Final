@@ -9,6 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Motomart">
+        <activity android:name=".Update"></activity>
+        <activity android:name=".Slashscreen" />
+        <activity android:name=".ProductView" />
+        <activity android:name=".SignUp" />
+        <activity android:name=".SharedPreference" />
+        <activity android:name=".LogInAct" />
+        <activity android:name=".CategoryAct" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
