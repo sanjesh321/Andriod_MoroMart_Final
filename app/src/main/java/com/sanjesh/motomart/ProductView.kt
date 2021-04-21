@@ -6,7 +6,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.sanjesh.motomart.API.Servicebuilder
+import com.sanjesh.motomart.Entity.Product
+import com.sanjesh.motomart.Repository.CartRepo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ProductView : AppCompatActivity(), View.OnClickListener {
     private var product: Product? =null
@@ -35,7 +43,7 @@ class ProductView : AppCompatActivity(), View.OnClickListener {
         tvDescription.text = product!!.pdesc
         tvProduct.text = product!!.pname
 
-        var imgPath = ServiceBuilder.loadImagePath()+product!!.pimage!!.replace("\\","/")
+        var imgPath = Servicebuilder.loadImagePath()+product!!.pimage!!.replace("\\","/")
         Glide.with(this@ProductView).load(imgPath).into(ivPart)
 
     }
@@ -45,7 +53,7 @@ class ProductView : AppCompatActivity(), View.OnClickListener {
             R.id.btnAdd->{
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-                        val cartRepository = CartRepository()
+                        val cartRepository = CartRepo()
                         val response = cartRepository.addToCart(product!!._id,"1")
                         if(response.success == true)
                         {

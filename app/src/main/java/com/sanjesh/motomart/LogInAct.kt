@@ -11,6 +11,15 @@ import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.sanjesh.motomart.API.Servicebuilder
+import com.sanjesh.motomart.DB.UserDB
+import com.sanjesh.motomart.Notification.NotificationSender
+import com.sanjesh.motomart.Repository.UserRepo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class LogInAct : AppCompatActivity() {
@@ -79,7 +88,7 @@ class LogInAct : AppCompatActivity() {
         if(validate()){
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val repo = UserRepository()
+                    val repo = UserRepo()
                     val response = repo.checkUser(etUid.text.toString(),etPass.text.toString())
                     if(response.success == true)
                     {
@@ -88,7 +97,7 @@ class LogInAct : AppCompatActivity() {
                         instance.registerUser(response.data!!)
                         withContext(Main)
                         {
-                            ServiceBuilder.token = "Bearer "+response.token
+                            Servicebuilder.token = "Bearer "+response.token
                             if(cbRemember.isChecked){
                                 saveSharedPref()
                             }

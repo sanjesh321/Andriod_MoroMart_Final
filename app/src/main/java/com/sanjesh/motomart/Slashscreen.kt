@@ -7,6 +7,10 @@ import android.net.NetworkInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.sanjesh.motomart.API.Servicebuilder
+import com.sanjesh.motomart.DB.UserDB
+import com.sanjesh.motomart.Repository.UserRepo
+import kotlinx.coroutines.*
 import java.lang.Exception
 
 class Slashscreen : AppCompatActivity() {
@@ -36,7 +40,7 @@ class Slashscreen : AppCompatActivity() {
             startActivity(
                 Intent(
                     this@Slashscreen,
-                    LoginActivity::class.java
+                    LogInAct::class.java
                 )
             )
         }
@@ -44,13 +48,13 @@ class Slashscreen : AppCompatActivity() {
     private fun login() {
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val repository = UserRepository()
+                val repository = UserRepo()
                 val response = repository.checkUser(username!!, password!!)
                 if (response.success == true) {
                     // Save token
                     var instance = UserDB.getInstance(this@Slashscreen).getUserDAO()
                     instance.registerUser(response.data!!)
-                    ServiceBuilder.token = "Bearer ${response.token}"
+                    Servicebuilder.token = "Bearer ${response.token}"
                     startActivity(
                         Intent(
                             this@Slashscreen,

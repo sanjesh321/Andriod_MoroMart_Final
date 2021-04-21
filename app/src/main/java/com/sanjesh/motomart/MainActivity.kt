@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.sanjesh.motomart.Fragment.CategoryFragment
+import com.sanjesh.motomart.Fragment.HomeFragment
+import com.sanjesh.motomart.Fragment.SettingsFragment
+import com.sanjesh.motomart.Notification.NotificationSender
 
 class MainActivity : AppCompatActivity(), SensorEventListener {
     private lateinit var sensorManager: SensorManager
@@ -78,7 +82,7 @@ class MainActivity : AppCompatActivity(), SensorEventListener {
             val values = event!!.values[0]
             if(values <= 4)
             {
-                val logOut = LogOut(this,this)
+                val logOut = Logout(this,this)
                 logOut.logout()
             }
         }

@@ -16,7 +16,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.PopupMenu
+import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.sanjesh.motomart.API.Servicebuilder
+import com.sanjesh.motomart.DB.UserDB
+import com.sanjesh.motomart.Repository.UserRepo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -60,7 +71,7 @@ class Update : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             {
                 if(user.si_profilepic != null && user.si_profilepic!="no-img.jpg")
                 {
-                    var imgPath = ServiceBuilder.loadImagePath()+user.si_profilepic!!.replace("\\","/")
+                    var imgPath = Servicebuilder.loadImagePath()+user.si_profilepic!!.replace("\\","/")
                     Glide.with(this@Update).load(imgPath).into(ivPp)
                 }
                 else
@@ -85,7 +96,7 @@ class Update : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
             val body = MultipartBody.Part.createFormData("profileImg", file.name, req_file)
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val repo = UserRepository()
+                    val repo = UserRepo()
                     val response = repo.uploadImage(body)
                     if (response.success == true) {
                         var instance = UserDB.getInstance(this@Update).getUserDAO()
@@ -201,7 +212,7 @@ class Update : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
         {
             CoroutineScope(Dispatchers.IO).launch {
                 try {
-                    val repo = UserRepository()
+                    val repo = UserRepo()
                     val response = repo.editUser(etFn.text.toString(),etln.text.toString(),etEmail.text.toString(),etUsername.text.toString())
                     if(response.success == true)
                     {

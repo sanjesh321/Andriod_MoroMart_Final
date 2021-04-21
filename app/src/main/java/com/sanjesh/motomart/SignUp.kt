@@ -6,6 +6,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.sanjesh.motomart.Entity.User
+import com.sanjesh.motomart.Repository.UserRepo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class SignUp : AppCompatActivity() {
 
@@ -46,7 +52,7 @@ class SignUp : AppCompatActivity() {
 
 
                 CoroutineScope(Dispatchers.IO).launch {
-                    val userRepo = UserRepository()
+                    val userRepo = UserRepo()
                     val response = userRepo.registerUser(user)
                     if(response.message==true) {
                         withContext(Dispatchers.Main) {

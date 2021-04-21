@@ -5,6 +5,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.sanjesh.motomart.Adapter.ProductAdapter
+import com.sanjesh.motomart.Repository.ProductRepo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Dispatchers.Main
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.lang.Exception
 
 class CategoryAct : AppCompatActivity() {
@@ -18,7 +25,7 @@ class CategoryAct : AppCompatActivity() {
     private fun loadProduct(){
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val productRepository = ProductRepository()
+                val productRepository = ProductRepo()
                 val response = productRepository.retrieveProducts()
                 println(response)
                 if (response.success == true){
