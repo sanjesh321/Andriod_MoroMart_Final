@@ -20,12 +20,14 @@
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center"/>
+
     <Button
         android:id="@+id/btnUpdateImage"
-        android:layout_width="wrap_content"
+        android:layout_width="219dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Update"/>
+        android:backgroundTint="#FF3933"
+        android:text="Update" />
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/etFn"
         android:layout_marginTop="20dp"
@@ -66,13 +68,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         />
+
     <Button
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#5ca08e"
+        android:layout_width="221dp"
+        android:layout_height="62dp"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:onClick="UpdateRoute"
-        android:text="Update"/>
+        android:text="Update"
+        android:backgroundTint="#FF3933"/>
 
 </LinearLayout>

@@ -1,9 +1,10 @@
 package com.sanjesh.motomart.DAO
 
+
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.sanjesh.motomart.Entity.Product
+import com.example.Motomart.entity.Product
 
 interface Productdao { @Insert(onConflict = OnConflictStrategy.REPLACE)
 suspend fun addProduct(product: MutableList<Product>)

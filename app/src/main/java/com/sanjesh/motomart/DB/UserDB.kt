@@ -11,7 +11,7 @@ import com.sanjesh.motomart.Entity.User
 
 @Database(
     entities = [(User::class),(Product::class)],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 

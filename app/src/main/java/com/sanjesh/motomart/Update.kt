@@ -76,7 +76,7 @@ class Update : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
                 }
                 else
                 {
-                    ivPp.setImageResource(R.drawable.noimg)
+                    ivPp.setImageResource(R.drawable.img1)
                 }
 
                 etFn.setText(user.si_Firstname)
@@ -149,7 +149,7 @@ class Update : AppCompatActivity(), PopupMenu.OnMenuItemClickListener {
     private fun showPopUp()
     {
         var popUp = PopupMenu(this,ivPp)
-        popUp.menuInflater.inflate(R.menu.gallery_carmera,popUp.menu)
+        popUp.menuInflater.inflate(R.menu.gallery_camera,popUp.menu)
         popUp.setOnMenuItemClickListener(this)
         popUp.show()
     }

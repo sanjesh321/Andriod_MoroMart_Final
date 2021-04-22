@@ -1,16 +1,18 @@
-package com.sanjesh.motomart.Entity
 
+package com.example.Motomart.entity
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.Entity
 import androidx.room.PrimaryKey
-
-data class Product(@PrimaryKey
-                   val _id:String="",
-                   val pname:String?=null,
-                   val pdesc:String?=null,
-                   val pprice:Int=0,
-                   val pimage:String?=null,
-                   val pcategory:String?=null) : Parcelable {
+@Entity
+data class Product(
+    @PrimaryKey
+    val _id:String="",
+    val pname:String?=null,
+    val pdesc:String?=null,
+    val pprice:Int=0,
+    val pimage:String?=null,
+    val pcategory:String?=null) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString(),
@@ -46,5 +48,3 @@ data class Product(@PrimaryKey
 
 
 }
-
-
